@@ -21,7 +21,7 @@ composer require mosaxiv/cakephp-token-verify
 
 ## Example
 
-### reset password token
+### reset password
 
 ```php
 // app/config/Migrations
