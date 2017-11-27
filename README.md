@@ -14,3 +14,102 @@
 ```
 composer require mosaxiv/cakephp-token-verify
 ```
+
+## Usage
+
+### reset password token
+
+```php
+class CreateUsers extends AbstractMigration
+{
+    public function change()
+    {
+        $this->table('users')
+            ->addColumn('username', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false
+            ])
+            ->addColumn('email', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false
+            ])
+            ->addColumn('password', 'string', [
+                'default' => null,
+                'limit' => 255,
+                'null' => false
+            ])
+            ->addColumn('created', 'datetime', [
+                'default' => null,
+                'null' => false
+            ])
+            ->addColumn('modified', 'datetime', [
+                'default' => null,
+                'null' => false
+            ])
+            ->create();
+    }
+}
+```
+
+```php
+// app/src/Model/Entity/User.php
+
+use Token\Model\Entity\TokenTrait;
+
+class User extends Entity
+{
+    use TokenTrait;
+}
+
+```
+
+```php
+// app/config/routes.php
+
+Router::scope('/', function (RouteBuilder $routes) {
+    $routes->connect('/forgotPassword', ['controller' => 'Users', 'action' => 'forgotPassword']);
+    $routes->connect('/resetPassword/:token',
+        ['controller' => 'Users', 'action' => 'resetPassword'],
+        ['pass' => ['token']]
+    );
+}
+```
+
+```php
+use Token\Util\Token;
+
+class UsersController extends AppController
+{
+
+    public function forgotPassword()
+    {
+        if ($this->request->is('post')) {
+            $email = $this->request->getData('email');
+            $user = $this->Users->findByEmail($email)->first();
+            if ($user) {
+                $token = $user->tokenGenerate();
+                // send email
+            }
+        }
+    }
+
+    public function resetPassword($token)
+    {
+        $user = $this->Users->get(Token::getId($token));
+        if (!$user->tokenVerify($token)) {
+            throw new \Cake\Network\Exception\NotFoundException();
+        }
+
+        if ($this->request->is('post')) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                // success
+            } else {
+                // error
+            }
+        }
+    }
+}
+```
