@@ -20,6 +20,8 @@ composer require mosaxiv/cakephp-token-verify
 ### reset password token
 
 ```php
+// app/config/Migrations
+
 class CreateUsers extends AbstractMigration
 {
     public function change()
@@ -78,6 +80,8 @@ Router::scope('/', function (RouteBuilder $routes) {
 ```
 
 ```php
+// app/src/Controller/UsersController.php
+
 use Token\Util\Token;
 
 class UsersController extends AppController
