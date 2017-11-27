@@ -72,18 +72,6 @@ class User extends Entity
 ```
 
 ```php
-// app/config/routes.php
-
-Router::scope('/', function (RouteBuilder $routes) {
-    $routes->connect('/forgotPassword', ['controller' => 'Users', 'action' => 'forgotPassword']);
-    $routes->connect('/resetPassword/:token',
-        ['controller' => 'Users', 'action' => 'resetPassword'],
-        ['pass' => ['token']]
-    );
-}
-```
-
-```php
 // app/src/Controller/UsersController.php
 
 use Token\Util\Token;
