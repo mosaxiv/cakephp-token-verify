@@ -24,42 +24,6 @@ composer require mosaxiv/cakephp-token-verify
 ### reset password
 
 ```php
-// app/config/Migrations
-
-class CreateUsers extends AbstractMigration
-{
-    public function change()
-    {
-        $this->table('users')
-            ->addColumn('username', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('email', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('password', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'null' => false
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'null' => false
-            ])
-            ->create();
-    }
-}
-```
-
-```php
 // app/src/Model/Entity/User.php
 
 use Token\Model\Entity\TokenTrait;
