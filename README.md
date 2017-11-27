@@ -15,7 +15,7 @@
 composer require mosaxiv/cakephp-token-verify
 ```
 
-## Usage
+## Example
 
 ### reset password token
 
