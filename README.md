@@ -1,6 +1,10 @@
 # Token Verify plugin for CakePHP3
 
 
+Easily issue tokens that can be used for mail authentication.  
+
+one-time/url-safe/safety :+1:
+
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/mosaxiv/cakephp-token-verify.svg?branch=master)](https://travis-ci.org/mosaxiv/cakephp-token-verify)
 
