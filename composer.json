@@ -8,7 +8,12 @@
         "token",
         "jwt"
     ],
+    "homepage": "https://github.com/mosaxiv/cakephp-token-verify",
     "license": "MIT",
+    "support": {
+        "issues": "https://github.com/mosaxiv/cakephp-token-verify/issues",
+        "source": "https://github.com/mosaxiv/cakephp-token-verify"
+    },
     "require": {
         "php": ">=7.0.0",
         "cakephp/cakephp": "~3.0",
