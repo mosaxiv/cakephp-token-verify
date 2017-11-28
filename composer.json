@@ -1,6 +1,6 @@
 {
     "name": "mosaxiv/cakephp-token-verify",
-    "description": "Token Verify plugin for CakePHP",
+    "description": "Easily issue tokens that can be used for mail authentication.",
     "type": "cakephp-plugin",
     "keywords": [
         "cakephp",
