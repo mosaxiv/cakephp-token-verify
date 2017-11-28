@@ -1,8 +1,7 @@
 # Token Verify plugin for CakePHP3
 
-
 Easily issue tokens that can be used for mail authentication.  
-
+No need for token field in table.  
 one-time/url-safe/safety :+1:
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
@@ -24,42 +23,6 @@ composer require mosaxiv/cakephp-token-verify
 ### reset password
 
 ```php
-// app/config/Migrations
-
-class CreateUsers extends AbstractMigration
-{
-    public function change()
-    {
-        $this->table('users')
-            ->addColumn('username', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('email', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('password', 'string', [
-                'default' => null,
-                'limit' => 255,
-                'null' => false
-            ])
-            ->addColumn('created', 'datetime', [
-                'default' => null,
-                'null' => false
-            ])
-            ->addColumn('modified', 'datetime', [
-                'default' => null,
-                'null' => false
-            ])
-            ->create();
-    }
-}
-```
-
-```php
 // app/src/Model/Entity/User.php
 
 use Token\Model\Entity\TokenTrait;
@@ -69,18 +32,6 @@ class User extends Entity
     use TokenTrait;
 }
 
-```
-
-```php
-// app/config/routes.php
-
-Router::scope('/', function (RouteBuilder $routes) {
-    $routes->connect('/forgotPassword', ['controller' => 'Users', 'action' => 'forgotPassword']);
-    $routes->connect('/resetPassword/:token',
-        ['controller' => 'Users', 'action' => 'resetPassword'],
-        ['pass' => ['token']]
-    );
-}
 ```
 
 ```php
