@@ -13,11 +13,6 @@ class Token extends Entity
 
 class TokenTraitTest extends TestCase
 {
-    /**
-     * @var Token
-     */
-    protected $token;
-
     public function setUp()
     {
         parent::setUp();
