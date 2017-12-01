@@ -2,6 +2,7 @@
 
 [![MIT License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](LICENSE)
 [![Build Status](https://travis-ci.org/mosaxiv/cakephp-token-verify.svg?branch=master)](https://travis-ci.org/mosaxiv/cakephp-token-verify)
+[![Packagist](https://img.shields.io/packagist/v/mosaxiv/cakephp-token-verify.svg)]()
 
 Easily issue tokens that can be used for mail authentication.  
 No need for token field in table.  
