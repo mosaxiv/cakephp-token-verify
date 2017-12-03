@@ -45,7 +45,9 @@ class TokenTraitTest extends TestCase
     {
         $token = new Token(['id' => 1, 'modified' => Time::now()]);
         $result = $token->tokenGenerate();
+
         $this->assertInternalType('string', $result);
+        $this->assertEquals(1, \Token\Util\Token::getId($result));
     }
 
     /**
@@ -75,11 +77,10 @@ class TokenTraitTest extends TestCase
         $token
             ->setTokenData('name1', 'value1')
             ->setTokenData('name2', 'value2');
-        $tokenString = $token->tokenGenerate();
+        $result = $token->tokenGenerate();
 
-        $this->assertInternalType('string', $tokenString);
-        $this->assertTrue($token->tokenVerify($tokenString));
-        $this->assertEquals('value1', \Token\Util\Token::getData($tokenString, 'name1'));
-        $this->assertEquals('value2', \Token\Util\Token::getData($tokenString, 'name2'));
+        $this->assertInternalType('string', $result);
+        $this->assertEquals('value1', \Token\Util\Token::getData($result, 'name1'));
+        $this->assertEquals('value2', \Token\Util\Token::getData($result, 'name2'));
     }
 }
