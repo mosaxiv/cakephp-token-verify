@@ -68,4 +68,18 @@ class TokenTraitTest extends TestCase
 
         $this->assertFalse($token->tokenVerify('test1234567'));
     }
+
+    public function testSetTokenData()
+    {
+        $token = new Token(['id' => 1, 'modified' => Time::now()]);
+        $token
+            ->setTokenData('name1', 'value1')
+            ->setTokenData('name2', 'value2');
+        $tokenString = $token->tokenGenerate();
+
+        $this->assertInternalType('string', $tokenString);
+        $this->assertTrue($token->tokenVerify($tokenString));
+        $this->assertEquals('value1', \Token\Util\Token::getData($tokenString, 'name1'));
+        $this->assertEquals('value2', \Token\Util\Token::getData($tokenString, 'name2'));
+    }
 }

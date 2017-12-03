@@ -28,4 +28,20 @@ class TokenTest extends TestCase
 
         $this->assertEquals(100, Token::getId($token));
     }
+
+    public function testGetData()
+    {
+        $this->assertFalse(Token::getData('test123456789', 'name'));
+
+        $builder = new Builder();
+        $builder
+            ->set('name1', 'value1')
+            ->set('name2', 'value2')
+            ->sign(new Sha256(), 'key');
+        $token = (string)$builder->getToken();
+
+        $this->assertEquals('value1', Token::getData($token, 'name1'));
+        $this->assertEquals('value2', Token::getData($token, 'name2'));
+        $this->assertFalse(Token::getData($token, 'name3'));
+    }
 }

@@ -21,6 +21,25 @@ trait TokenTrait
     protected $_modifiedField = 'modified';
 
     /**
+     * @var array
+     */
+    protected $_tokenData = [];
+
+    /**
+     * set token data
+     *
+     * @param string $name claim name
+     * @param mixed $value claim value
+     * @return $this
+     */
+    public function setTokenData(string $name, $value)
+    {
+        $this->_tokenData[] = ['name' => $name, 'value' => $value];
+
+        return $this;
+    }
+
+    /**
      * token generate
      *
      * @param int $minute token expiration
@@ -37,9 +56,15 @@ trait TokenTrait
         $time->addMinute($minute);
 
         $builder = new Builder();
-        $builder->setId($this->get($this->_idField))
-            ->setExpiration($time->toUnixString())
-            ->sign(new Sha256(), $this->_createKey());
+        $builder
+            ->setId($this->get($this->_idField))
+            ->setExpiration($time->toUnixString());
+
+        foreach ($this->_tokenData as $data) {
+            $builder->set($data['name'], $data['value']);
+        }
+
+        $builder->sign(new Sha256(), $this->_createKey());
 
         return (string)$builder->getToken();
     }
