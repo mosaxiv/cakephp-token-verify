@@ -67,7 +67,6 @@ class TokenTraitTest extends TestCase
 
         $token->set('modified', new Time('2017-01-02'));
         $this->assertFalse($token->tokenVerify($tokenString));
-
         $this->assertFalse($token->tokenVerify('test1234567'));
     }
 
