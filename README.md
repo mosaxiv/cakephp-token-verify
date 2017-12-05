@@ -72,3 +72,8 @@ class UsersController extends AppController
     }
 }
 ```
+
+
+# translate
+
+[日本語説明](https://qiita.com/mosa7/items/5aa94e824f6dcd846594)
