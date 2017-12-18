@@ -22,6 +22,17 @@ composer require mosaxiv/cakephp-token-verify
 
 ### reset password
 
+```sql
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY, # Required
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created DATETIME,
+    modified DATETIME # Required
+);
+```
+
 ```php
 // app/src/Model/Entity/User.php
 
