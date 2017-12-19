@@ -34,7 +34,7 @@ JWT should be discarded when the table is updated.
 
 Used in entity.
 
-### tokenGenerate()
+### tokenGenerate($minits = 10)
 
 ```php
 // token generate(default token expiration in 10 minits)
@@ -44,18 +44,32 @@ $token = $entity->tokenGenerate();
 $token = $entity->tokenGenerate(60);
 ```
 
-### tokenVerify()
+### tokenVerify($token)
 
 ```php
 $user->tokenVerify($token) // true or false
 ```
 
+### setTokenData($name, $value)
+
+※ It does not encrypt the set data
+
+```php
+$user->setTokenData('test', 'testdata')
+```
+
 ## Token\Util\Token
 
-### Token::getId()
+### Token::getId($token)
 
 ```php
 Token::getId($token) // id or false
+```
+
+### Token::getData($token, $name)
+
+```php
+Token::getData($token, 'test') // data or false
 ```
 
 # Example
