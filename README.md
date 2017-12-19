@@ -50,6 +50,7 @@ class User extends Entity
 ```php
 // app/src/Controller/UsersController.php
 
+use Cake\Routing\Router;
 use Token\Util\Token;
 
 class UsersController extends AppController
