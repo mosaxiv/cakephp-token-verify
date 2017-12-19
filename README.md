@@ -62,6 +62,7 @@ class UsersController extends AppController
             $user = $this->Users->findByEmail($email)->first();
             if ($user) {
                 $token = $user->tokenGenerate();
+                $url = Router::url(['controller' => 'User', 'action' => 'resetPassword', $token], true);
                 // send email
             }
         }
