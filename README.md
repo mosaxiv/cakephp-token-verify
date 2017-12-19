@@ -5,7 +5,7 @@
 
 JWT for mail authentication.  
 
-Easily issue tokens that can be used for mail authentication.
+Easily issue tokens that can be used for mail authentication.  
 No need for token field in table.  
 one-time/url-safe/safety :+1:
 
