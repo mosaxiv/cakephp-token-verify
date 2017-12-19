@@ -9,20 +9,58 @@ Easily issue tokens(JWT) that can be used for mail authentication.
 No need for token field in table.  
 one-time/url-safe/safety :+1:
 
-## Requirements
+# Requirements
 
 - PHP 7.0+
 - CakePHP 3.0.0+
 
-## Installation
+# Installation
 
 ```
 composer require mosaxiv/cakephp-token-verify
 ```
 
-## Example
+# Usage
 
-### reset password
+## Required database field
+
+* `id` field
+* `modified` field
+
+By using modified field, JWT can be used as one-time tokens.  
+JWT should be discarded when the table is updated.
+
+## Token\Model\Entity\TokenTrait
+
+Used in entity.
+
+### tokenGenerate()
+
+```php
+// token generate(default token expiration in 10 minits)
+$token = $entity->tokenGenerate();
+
+// token generate(token expiration in 60 minits)
+$token = $entity->tokenGenerate(60);
+```
+
+### tokenVerify()
+
+```php
+$user->tokenVerify($token) // true or false
+```
+
+## Token\Util\Token
+
+### Token::getId()
+
+```php
+Token::getId($token) // id or false
+```
+
+# Example
+
+## reset password
 
 ```sql
 CREATE TABLE users (
@@ -87,7 +125,6 @@ class UsersController extends AppController
     }
 }
 ```
-
 
 # translate
 
