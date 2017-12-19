@@ -20,58 +20,6 @@ one-time/url-safe/safety :+1:
 composer require mosaxiv/cakephp-token-verify
 ```
 
-# Usage
-
-## Required database field
-
-* `id` field
-* `modified` field
-
-By using modified field, JWT can be used as one-time tokens.  
-JWT should be discarded when the table is updated.
-
-## Token\Model\Entity\TokenTrait
-
-Used in entity.
-
-### tokenGenerate($minits = 10)
-
-```php
-// token generate(default token expiration in 10 minits)
-$token = $entity->tokenGenerate();
-
-// token generate(token expiration in 60 minits)
-$token = $entity->tokenGenerate(60);
-```
-
-### tokenVerify($token)
-
-```php
-$user->tokenVerify($token) // true or false
-```
-
-### setTokenData($name, $value)
-
-※ It does not encrypt the set data
-
-```php
-$user->setTokenData('test', 'testdata')
-```
-
-## Token\Util\Token
-
-### Token::getId($token)
-
-```php
-Token::getId($token) // id or false
-```
-
-### Token::getData($token, $name)
-
-```php
-Token::getData($token, 'test') // data or false
-```
-
 # Example
 
 ## reset password
@@ -139,6 +87,60 @@ class UsersController extends AppController
     }
 }
 ```
+
+
+# Usage
+
+## Required database field
+
+* `id` field
+* `modified` field
+
+By using modified field, JWT can be used as one-time tokens.  
+JWT should be discarded when the table is updated.
+
+## Token\Model\Entity\TokenTrait
+
+Used in entity.
+
+### tokenGenerate($minits = 10)
+
+```php
+// token generate(default token expiration in 10 minits)
+$token = $entity->tokenGenerate();
+
+// token generate(token expiration in 60 minits)
+$token = $entity->tokenGenerate(60);
+```
+
+### tokenVerify($token)
+
+```php
+$user->tokenVerify($token) // true or false
+```
+
+### setTokenData($name, $value)
+
+※ It does not encrypt the set data
+
+```php
+$user->setTokenData('test', 'testdata')
+```
+
+## Token\Util\Token
+
+### Token::getId($token)
+
+```php
+Token::getId($token) // id or false
+```
+
+### Token::getData($token, $name)
+
+```php
+Token::getData($token, 'test') // data or false
+```
+
 
 # translate
 
