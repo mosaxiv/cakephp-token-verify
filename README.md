@@ -140,8 +140,3 @@ Token::getId($token) // id or false
 ```php
 Token::getData($token, 'test') // data or false
 ```
-
-
-# translate
-
-[日本語説明](https://qiita.com/mosa7/items/5aa94e824f6dcd846594)
